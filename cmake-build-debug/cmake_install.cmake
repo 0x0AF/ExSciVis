@@ -1,4 +1,4 @@
-# Install script for directory: /home/tihi6213/Schreibtisch/ExSciVis
+# Install script for directory: /home/tihi6213/Desktop/ExSciVis
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,18 +29,18 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "0")
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE DIRECTORY FILES "/home/tihi6213/Schreibtisch/ExSciVis/data")
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE DIRECTORY FILES "/home/tihi6213/Desktop/ExSciVis/data")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/tihi6213/Schreibtisch/ExSciVis/cmake-build-debug/external/glfw-3.0.3/cmake_install.cmake")
-  include("/home/tihi6213/Schreibtisch/ExSciVis/cmake-build-debug/framework/cmake_install.cmake")
-  include("/home/tihi6213/Schreibtisch/ExSciVis/cmake-build-debug/source/cmake_install.cmake")
+  include("/home/tihi6213/Desktop/ExSciVis/cmake-build-debug/external/glfw-3.0.3/cmake_install.cmake")
+  include("/home/tihi6213/Desktop/ExSciVis/cmake-build-debug/framework/cmake_install.cmake")
+  include("/home/tihi6213/Desktop/ExSciVis/cmake-build-debug/source/cmake_install.cmake")
 
 endif()
 
@@ -52,5 +52,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/tihi6213/Schreibtisch/ExSciVis/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tihi6213/Desktop/ExSciVis/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

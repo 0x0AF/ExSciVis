@@ -1,4 +1,4 @@
-# Install script for directory: /home/tihi6213/Schreibtisch/ExSciVis/source
+# Install script for directory: /home/tihi6213/Desktop/ExSciVis/source
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,17 +29,17 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "0")
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MyVolumeRaycaster" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MyVolumeRaycaster")
     file(RPATH_CHECK
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MyVolumeRaycaster"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE EXECUTABLE FILES "/home/tihi6213/Schreibtisch/ExSciVis/cmake-build-debug/build/Debug/MyVolumeRaycaster")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE EXECUTABLE FILES "/home/tihi6213/Desktop/ExSciVis/cmake-build-debug/build/Debug/MyVolumeRaycaster")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MyVolumeRaycaster" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/./MyVolumeRaycaster")
     if(CMAKE_INSTALL_DO_STRIP)

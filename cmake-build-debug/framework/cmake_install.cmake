@@ -1,4 +1,4 @@
-# Install script for directory: /home/tihi6213/Schreibtisch/ExSciVis/framework
+# Install script for directory: /home/tihi6213/Desktop/ExSciVis/framework
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -29,6 +29,6 @@ endif()
 
 # Install shared libraries without execute permission?
 if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "0")
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
 endif()
 
