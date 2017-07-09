@@ -229,15 +229,32 @@ void main() {
   // the traversal loop,
   // termination when the sampling position is outside volume boundarys
   // another termination condition for early ray termination is added
+  vec3 comp_color = vec3(0, 0, 0);
+  float comp_transp = 1;
+  int i = 0;
+
   while (inside_volume) {
 // get sample
 #if ENABLE_OPACITY_CORRECTION == 1 // Opacity Correction
-    IMPLEMENT;
+    comp_transp = pow(comp_transp, sampling_distance_ref / sampling_distance);
 #else
     float s = get_sample_data(sampling_pos);
 #endif
-    // dummy code
-    dst = vec4(light_specular_color, 1.0);
+    vec4 color = texture(transfer_texture, vec2(s, s));
+
+    if (i != 0) {
+      i++;
+      comp_color.r = comp_color.r + color.a * color.r * comp_transp;
+      comp_color.g = comp_color.g + color.a * color.g * comp_transp;
+      comp_color.b = comp_color.b + color.a * color.b * comp_transp;
+      comp_transp = (1 - color.a) * comp_transp;
+    } else {
+      i++;
+      comp_color.r = color.r * color.a;
+      comp_color.g = color.g * color.a;
+      comp_color.b = color.b * color.a;
+      comp_transp = 1 - color.a;
+    }
 
     // increment the ray sampling position
     sampling_pos += ray_increment;
@@ -246,9 +263,14 @@ void main() {
     IMPLEMENT;
 #endif
 
+    if (comp_transp < 0)
+      break;
+
     // update the loop termination condition
     inside_volume = inside_volume_bounds(sampling_pos);
   }
+
+  dst = vec4(comp_color, 1 - comp_transp);
 #endif
 
   // return the calculated color value
