@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/source/shader/volume.frag" line="127" />
-    <bookmark url="file://$PROJECT_DIR$/source/shader/volume.frag" line="131" />
-    <bookmark url="file://$PROJECT_DIR$/source/shader/volume.frag" line="143" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/source/shader/volume.frag" line="125" />
+    <bookmark url="file://$PROJECT_DIR$/source/shader/volume.frag" line="132" />
+    <bookmark url="file://$PROJECT_DIR$/source/shader/volume.frag" line="144" mnemonic="9" />
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
@@ -32,12 +32,12 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="volume.frag" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/source/shader/volume.frag">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="679">
-              <caret line="256" column="5" lean-forward="true" selection-start-line="256" selection-start-column="5" selection-end-line="256" selection-end-column="5" />
+            <state relative-caret-position="424">
+              <caret line="201" column="75" lean-forward="true" selection-start-line="201" selection-start-column="75" selection-end-line="201" selection-end-column="75" />
               <folding />
             </state>
           </provider>
@@ -48,6 +48,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>intersection</find>
+      <find>sampling_distance_ref</find>
     </findStrings>
     <replaceStrings>
       <replace>sampling_pos</replace>
@@ -377,14 +378,16 @@
       <workItem from="1498676144359" duration="5119000" />
       <workItem from="1498824193498" duration="16000" />
       <workItem from="1499621106691" duration="4742000" />
+      <workItem from="1499689499780" duration="4268000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19461000" />
+    <option name="totallyTimeSpent" value="23729000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="2562" height="1393" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="GfmBrowser" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -394,7 +397,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35308057" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14518695" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14638028" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39941263" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -419,6 +422,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/source/shader/volume.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5120">
+          <caret line="256" column="5" lean-forward="true" selection-start-line="256" selection-start-column="5" selection-end-line="256" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/source/shader/volume.frag">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -456,14 +467,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/source/shader/volume.frag">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="256" column="5" lean-forward="true" selection-start-line="256" selection-start-column="5" selection-end-line="256" selection-end-column="5" />
+        <state relative-caret-position="424">
+          <caret line="201" column="75" lean-forward="true" selection-start-line="201" selection-start-column="75" selection-end-line="201" selection-end-column="75" />
           <folding />
         </state>
       </provider>
