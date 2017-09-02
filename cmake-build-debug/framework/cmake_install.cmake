@@ -1,4 +1,4 @@
-# Install script for directory: /home/tihi6213/Desktop/ExSciVis/framework
+# Install script for directory: /home/anton/Desktop/ExSciVis/framework
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

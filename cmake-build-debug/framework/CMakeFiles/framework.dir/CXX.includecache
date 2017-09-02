@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -764,15 +764,15 @@ glm/vec2.hpp
 glm/vec3.hpp
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/color.hpp
+/home/anton/Desktop/ExSciVis/framework/color.hpp
 
-/home/tihi6213/Desktop/ExSciVis/framework/cube.cpp
+/home/anton/Desktop/ExSciVis/framework/cube.cpp
 cube.hpp
-/home/tihi6213/Desktop/ExSciVis/framework/cube.hpp
+/home/anton/Desktop/ExSciVis/framework/cube.hpp
 array
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/cube.hpp
+/home/anton/Desktop/ExSciVis/framework/cube.hpp
 GL/glew.h
 -
 OpenGL/gl3.h
@@ -784,15 +784,15 @@ glm/vec2.hpp
 glm/vec3.hpp
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/data_types_fwd.hpp
+/home/anton/Desktop/ExSciVis/framework/data_types_fwd.hpp
 vector
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/imconfig.h
+/home/anton/Desktop/ExSciVis/framework/imconfig.h
 
-/home/tihi6213/Desktop/ExSciVis/framework/imgui.cpp
+/home/anton/Desktop/ExSciVis/framework/imgui.cpp
 imgui.h
-/home/tihi6213/Desktop/ExSciVis/framework/imgui.h
+/home/anton/Desktop/ExSciVis/framework/imgui.h
 ctype.h
 -
 math.h
@@ -806,13 +806,13 @@ stddef.h
 stdint.h
 -
 stb_rect_pack.h
-/home/tihi6213/Desktop/ExSciVis/framework/stb_rect_pack.h
+/home/anton/Desktop/ExSciVis/framework/stb_rect_pack.h
 stb_truetype.h
-/home/tihi6213/Desktop/ExSciVis/framework/stb_truetype.h
+/home/anton/Desktop/ExSciVis/framework/stb_truetype.h
 stb_textedit.h
-/home/tihi6213/Desktop/ExSciVis/framework/stb_textedit.h
+/home/anton/Desktop/ExSciVis/framework/stb_textedit.h
 stb_textedit.h
-/home/tihi6213/Desktop/ExSciVis/framework/stb_textedit.h
+/home/anton/Desktop/ExSciVis/framework/stb_textedit.h
 windows.h
 -
 windows.h
@@ -820,11 +820,11 @@ windows.h
 Imm.h
 -
 imgui_user.inl
-/home/tihi6213/Desktop/ExSciVis/framework/imgui_user.inl
+/home/anton/Desktop/ExSciVis/framework/imgui_user.inl
 
-/home/tihi6213/Desktop/ExSciVis/framework/imgui.h
+/home/anton/Desktop/ExSciVis/framework/imgui.h
 imconfig.h
-/home/tihi6213/Desktop/ExSciVis/framework/imconfig.h
+/home/anton/Desktop/ExSciVis/framework/imconfig.h
 float.h
 -
 stdarg.h
@@ -838,13 +838,13 @@ string.h
 assert.h
 -
 imgui_user.h
-/home/tihi6213/Desktop/ExSciVis/framework/imgui_user.h
+/home/anton/Desktop/ExSciVis/framework/imgui_user.h
 
-/home/tihi6213/Desktop/ExSciVis/framework/imgui_impl_glfw_gl3.cpp
+/home/anton/Desktop/ExSciVis/framework/imgui_impl_glfw_gl3.cpp
+imgui_impl_glfw_gl3.h
+/home/anton/Desktop/ExSciVis/framework/imgui_impl_glfw_gl3.h
 imgui.h
 -
-imgui_impl_glfw_gl3.h
-/home/tihi6213/Desktop/ExSciVis/framework/imgui_impl_glfw_gl3.h
 cstring
 -
 iostream
@@ -856,15 +856,15 @@ GLFW/glfw3.h
 GLFW/glfw3native.h
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/imgui_impl_glfw_gl3.h
+/home/anton/Desktop/ExSciVis/framework/imgui_impl_glfw_gl3.h
 
-/home/tihi6213/Desktop/ExSciVis/framework/plane.cpp
+/home/anton/Desktop/ExSciVis/framework/plane.cpp
 plane.hpp
-/home/tihi6213/Desktop/ExSciVis/framework/plane.hpp
+/home/anton/Desktop/ExSciVis/framework/plane.hpp
 array
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/plane.hpp
+/home/anton/Desktop/ExSciVis/framework/plane.hpp
 GL/glew.h
 -
 OpenGL/gl3.h
@@ -876,23 +876,23 @@ glm/vec2.hpp
 glm/vec3.hpp
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/stb_rect_pack.h
+/home/anton/Desktop/ExSciVis/framework/stb_rect_pack.h
 stdlib.h
 -
 assert.h
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/stb_textedit.h
+/home/anton/Desktop/ExSciVis/framework/stb_textedit.h
 string.h
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/stb_truetype.h
+/home/anton/Desktop/ExSciVis/framework/stb_truetype.h
 stb_truetype.h
-/home/tihi6213/Desktop/ExSciVis/framework/stb_truetype.h
+/home/anton/Desktop/ExSciVis/framework/stb_truetype.h
 stdio.h
 -
 stb_truetype.h
-/home/tihi6213/Desktop/ExSciVis/framework/stb_truetype.h
+/home/anton/Desktop/ExSciVis/framework/stb_truetype.h
 stdlib.h
 -
 math.h
@@ -908,9 +908,9 @@ string.h
 memory.h
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/transfer_function.cpp
+/home/anton/Desktop/ExSciVis/framework/transfer_function.cpp
 transfer_function.hpp
-/home/tihi6213/Desktop/ExSciVis/framework/transfer_function.hpp
+/home/anton/Desktop/ExSciVis/framework/transfer_function.hpp
 iostream
 -
 fstream
@@ -928,11 +928,11 @@ glm/gtc/matrix_transform.hpp
 glm/gtc/type_ptr.hpp
 -
 utils.hpp
-/home/tihi6213/Desktop/ExSciVis/framework/utils.hpp
+/home/anton/Desktop/ExSciVis/framework/utils.hpp
 
-/home/tihi6213/Desktop/ExSciVis/framework/transfer_function.hpp
+/home/anton/Desktop/ExSciVis/framework/transfer_function.hpp
 data_types_fwd.hpp
-/home/tihi6213/Desktop/ExSciVis/framework/data_types_fwd.hpp
+/home/anton/Desktop/ExSciVis/framework/data_types_fwd.hpp
 string
 -
 map
@@ -948,13 +948,13 @@ utils.hpp
 plane.hpp
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/utils.cpp
+/home/anton/Desktop/ExSciVis/framework/utils.cpp
 utils.hpp
-/home/tihi6213/Desktop/ExSciVis/framework/utils.hpp
+/home/anton/Desktop/ExSciVis/framework/utils.hpp
 stdexcept
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/utils.hpp
+/home/anton/Desktop/ExSciVis/framework/utils.hpp
 GL/glew.h
 -
 OpenGL/gl3.h
@@ -972,17 +972,17 @@ cerrno
 iostream
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/volume_loader_raw.cpp
+/home/anton/Desktop/ExSciVis/framework/volume_loader_raw.cpp
 volume_loader_raw.hpp
-/home/tihi6213/Desktop/ExSciVis/framework/volume_loader_raw.hpp
+/home/anton/Desktop/ExSciVis/framework/volume_loader_raw.hpp
 iostream
 -
 fstream
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/volume_loader_raw.hpp
+/home/anton/Desktop/ExSciVis/framework/volume_loader_raw.hpp
 data_types_fwd.hpp
-/home/tihi6213/Desktop/ExSciVis/framework/data_types_fwd.hpp
+/home/anton/Desktop/ExSciVis/framework/data_types_fwd.hpp
 array
 -
 string
@@ -990,17 +990,17 @@ string
 glm/vec3.hpp
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/window.cpp
+/home/anton/Desktop/ExSciVis/framework/window.cpp
 window.hpp
-/home/tihi6213/Desktop/ExSciVis/framework/window.hpp
+/home/anton/Desktop/ExSciVis/framework/window.hpp
 cstring
 -
 iostream
 -
 
-/home/tihi6213/Desktop/ExSciVis/framework/window.hpp
+/home/anton/Desktop/ExSciVis/framework/window.hpp
 color.hpp
-/home/tihi6213/Desktop/ExSciVis/framework/color.hpp
+/home/anton/Desktop/ExSciVis/framework/color.hpp
 GL/glew.h
 -
 GLFW/glfw3.h

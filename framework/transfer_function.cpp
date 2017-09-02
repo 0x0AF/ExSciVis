@@ -20,9 +20,10 @@
 #include "utils.hpp"
 
 const char* vertex_shader = "\
-#version 330\n\
+#version 300 es\n\
+precision mediump float;\
 //#extension GL_ARB_shading_language_420pack : require\n\
-#extension GL_ARB_explicit_attrib_location : require\n\
+//#extension GL_ARB_explicit_attrib_location : require\n\
                                                         \n\
 layout(location = 0) in vec3 position;\n\
 layout(location = 1) in vec2 vtexcoord; \n\
@@ -39,9 +40,10 @@ void main()\n\
 ";
 
 const char* fragment_shader = "\
-#version 330\n\
+#version 300 es\n\
+precision mediump float;\
 //#extension GL_ARB_shading_language_420pack : require\n\
-#extension GL_ARB_explicit_attrib_location : require\n\
+//#extension GL_ARB_explicit_attrib_location : require\n\
                                                             \n\
 uniform sampler2D transfer_texture;\n\
 \n\

@@ -1,6 +1,6 @@
-/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/tihi6213/Desktop/ExSciVis
--- The C compiler identification is GNU 5.4.1
--- The CXX compiler identification is GNU 5.4.1
+/usr/local/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/anton/Desktop/ExSciVis
+-- The C compiler identification is GNU 5.4.0
+-- The CXX compiler identification is GNU 5.4.0
 -- Check for working C compiler: /usr/bin/cc
 -- Check for working C compiler: /usr/bin/cc -- works
 -- Detecting C compiler ABI info
@@ -14,8 +14,8 @@
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
 -- Found OpenGL: /usr/lib/x86_64-linux-gnu/libGL.so  
--- Looking for include file pthread.h
--- Looking for include file pthread.h - found
+-- Looking for pthread.h
+-- Looking for pthread.h - found
 -- Looking for pthread_create
 -- Looking for pthread_create - not found
 -- Looking for pthread_create in pthreads
@@ -23,7 +23,7 @@
 -- Looking for pthread_create in pthread
 -- Looking for pthread_create in pthread - found
 -- Found Threads: TRUE  
--- Could NOT find Doxygen (missing:  DOXYGEN_EXECUTABLE) 
+-- Found Doxygen: /usr/bin/doxygen (found version "1.8.11") 
 -- Using X11 for window creation
 -- Using GLX for context creation
 -- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so
@@ -47,4 +47,4 @@
 -- Looking for glXGetProcAddressEXT - not found
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/tihi6213/Desktop/ExSciVis/cmake-build-debug
+-- Build files have been written to: /home/anton/Desktop/ExSciVis/cmake-build-debug

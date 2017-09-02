@@ -1,0 +1,2 @@
+/usr/bin/ar qc libSTATIC.a  CMakeFiles/STATIC.dir/__/framework/glew.c.o
+/usr/bin/ranlib libSTATIC.a

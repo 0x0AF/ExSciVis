@@ -1,6 +1,9 @@
-#version 150
+#version 300 es
+precision mediump float;
+precision mediump sampler2D;
+precision mediump sampler3D;
 //#extension GL_ARB_shading_language_420pack : require
-#extension GL_ARB_explicit_attrib_location : require
+//#extension GL_ARB_explicit_attrib_location : require
 
 #define TASK 10
 #define ENABLE_OPACITY_CORRECTION 0
@@ -30,7 +33,6 @@ uniform vec3 light_specular_color;
 uniform float light_ref_coef;
 
 bool inside_volume_bounds(const in vec3 sampling_position) { return (all(greaterThanEqual(sampling_position, vec3(0.0))) && all(lessThanEqual(sampling_position, max_bounds))); }
-
 float get_sample_data(vec3 in_sampling_pos)
 {
     vec3 obj_to_tex = vec3(1.0) / max_bounds;
@@ -39,9 +41,14 @@ float get_sample_data(vec3 in_sampling_pos)
 
 vec3 get_gradient(vec3 pos)
 {
-    vec3 dx = vec3(max_bounds.x / volume_dimensions.x, 0, 0);
-    vec3 dy = vec3(0, max_bounds.y / volume_dimensions.y, 0);
-    vec3 dz = vec3(0, 0, max_bounds.z / volume_dimensions.z);
+    vec3 dx, dy, dz;
+
+    dx = vec3(0.0001, 0.0, 0.0);
+    //    dx = vec3(max_bounds.x / volume_dimensions.x, 0.0, 0.0);
+    dy = vec3(0.0, 0.0001, 0.0);
+    //    dy = vec3(0.0, max_bounds.y / volume_dimensions.y, 0.0);
+    dz = vec3(0.0, 0.0, 0.0001);
+    //    dz = vec3(0.0, 0.0, max_bounds.z / volume_dimensions.z);
 
     float x_r = get_sample_data(pos + dx);
     float x_l = get_sample_data(pos - dx);
@@ -50,7 +57,7 @@ vec3 get_gradient(vec3 pos)
     float z_r = get_sample_data(pos + dz);
     float z_l = get_sample_data(pos - dz);
 
-    return vec3((x_r - x_l) / 2, (y_r - y_l) / 2, (z_r - z_l) / 2);
+    return vec3((x_r - x_l) / 2.0, (y_r - y_l) / 2.0, (z_r - z_l) / 2.0);
 }
 
 void main()
@@ -101,7 +108,7 @@ void main()
 
 #if TASK == 11
     vec4 average_val = vec4(0.0, 0.0, 0.0, 0.0);
-    int i = 0;
+    float i = 0.0;
 
     // the traversal loop,
     // termination when the sampling position is outside volume boundarys
@@ -113,7 +120,7 @@ void main()
 
         vec4 color = texture(transfer_texture, vec2(s, s));
 
-        if(i != 0)
+        if(i != 0.0)
         {
             i++;
             average_val.r = average_val.r + (color.r - average_val.r) / i;
@@ -161,7 +168,7 @@ void main()
 
             while(length(hit_pos - ray_entry_position) - length(sampling_pos - ray_entry_position) > epsilon)
             {
-                sampling_pos = sampling_pos + ((hit_pos - sampling_pos) / 2);
+                sampling_pos = sampling_pos + ((hit_pos - sampling_pos) / 2.0);
                 s = get_sample_data(sampling_pos);
 
                 if(s > iso_value)
@@ -234,8 +241,8 @@ void main()
     // termination when the sampling position is outside volume boundarys
     // another termination condition for early ray termination is added
     vec3 comp_color = vec3(0, 0, 0);
-    float comp_transp = 1;
-    int i = 0;
+    float comp_transp = 1.0;
+    float i = 0.0;
 
     while(inside_volume)
     {
@@ -278,13 +285,13 @@ void main()
         //    }
 
         // front to back
-        if(i != 0)
+        if(i != 0.0)
         {
             i++;
             comp_color.r = comp_color.r + color.a * color.r * comp_transp;
             comp_color.g = comp_color.g + color.a * color.g * comp_transp;
             comp_color.b = comp_color.b + color.a * color.b * comp_transp;
-            comp_transp = (1 - color.a) * comp_transp;
+            comp_transp = (1.0 - color.a) * comp_transp;
         }
         else
         {
@@ -292,13 +299,13 @@ void main()
             comp_color.r = color.r * color.a;
             comp_color.g = color.g * color.a;
             comp_color.b = color.b * color.a;
-            comp_transp = 1 - color.a;
+            comp_transp = 1.0 - color.a;
         }
 
         // increment the ray sampling position
         sampling_pos += ray_increment;
 
-        if(comp_transp < 0)
+        if(comp_transp < 0.0)
             break;
 
         // update the loop termination condition
@@ -309,7 +316,7 @@ void main()
     comp_transp = pow(comp_transp, sampling_distance_ref / sampling_distance);
 #endif
 
-    dst = vec4(comp_color, 1 - comp_transp);
+    dst = vec4(comp_color, 1.0 - comp_transp);
 #endif
 
     // return the calculated color value

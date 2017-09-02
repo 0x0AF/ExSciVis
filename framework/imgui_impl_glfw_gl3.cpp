@@ -1,8 +1,8 @@
 // ImGui GLFW binding with OpenGL3 + shaders
 // https://github.com/ocornut/imgui
 
-#include <imgui.h>
 #include "imgui_impl_glfw_gl3.h"
+#include <imgui.h>
 
 #include <cstring>
 #include <iostream>
@@ -18,23 +18,23 @@
 #endif
 
 // Data
-static GLFWwindow*  g_Window = NULL;
-static double       g_Time = 0.0f;
-static bool         g_MousePressed[3] = { false, false, false };
-static float        g_MouseWheel = 0.0f;
-static GLuint       g_FontTexture = 0;
-static int          g_ShaderHandle = 0, g_VertHandle = 0, g_FragHandle = 0;
-static int          g_AttribLocationTex = 0, g_AttribLocationProjMtx = 0;
-static int          g_AttribLocationPosition = 0, g_AttribLocationUV = 0, g_AttribLocationColor = 0;
-static size_t       g_VboSize = 0;
+static GLFWwindow *g_Window = NULL;
+static double g_Time = 0.0f;
+static bool g_MousePressed[3] = {false, false, false};
+static float g_MouseWheel = 0.0f;
+static GLuint g_FontTexture = 0;
+static int g_ShaderHandle = 0, g_VertHandle = 0, g_FragHandle = 0;
+static int g_AttribLocationTex = 0, g_AttribLocationProjMtx = 0;
+static int g_AttribLocationPosition = 0, g_AttribLocationUV = 0, g_AttribLocationColor = 0;
+static size_t g_VboSize = 0;
 static unsigned int g_VboHandle = 0, g_VaoHandle = 0;
 
 // This is the main rendering function that you have to implement and provide to ImGui (via setting up 'RenderDrawListsFn' in the ImGuiIO structure)
 // If text or lines are blurry when integrating ImGui in your engine:
 // - in your Render function, try translating your projection matrix by (0.5f,0.5f) or (0.375f,0.375f)
-static void ImGui_ImplGlfwGL3_RenderDrawLists(ImDrawList** const cmd_lists, int cmd_lists_count)
+static void ImGui_ImplGlfwGL3_RenderDrawLists(ImDrawList **const cmd_lists, int cmd_lists_count)
 {
-    if (cmd_lists_count == 0)
+    if(cmd_lists_count == 0)
         return;
 
     // Setup render state: alpha-blending enabled, no face culling, no depth testing, scissor enabled
@@ -52,12 +52,8 @@ static void ImGui_ImplGlfwGL3_RenderDrawLists(ImDrawList** const cmd_lists, int 
     // Setup orthographic projection matrix
     const float width = ImGui::GetIO().DisplaySize.x;
     const float height = ImGui::GetIO().DisplaySize.y;
-    const float ortho_projection[4][4] =
-    {
-        { 2.0f/width,	0.0f,			0.0f,		0.0f },
-        { 0.0f,			2.0f/-height,	0.0f,		0.0f },
-        { 0.0f,			0.0f,			-1.0f,		0.0f },
-        { -1.0f,		1.0f,			0.0f,		1.0f },
+    const float ortho_projection[4][4] = {
+        {2.0f / width, 0.0f, 0.0f, 0.0f}, {0.0f, 2.0f / -height, 0.0f, 0.0f}, {0.0f, 0.0f, -1.0f, 0.0f}, {-1.0f, 1.0f, 0.0f, 1.0f},
     };
     glUseProgram(g_ShaderHandle);
     glUniform1i(g_AttribLocationTex, 0);
@@ -65,23 +61,23 @@ static void ImGui_ImplGlfwGL3_RenderDrawLists(ImDrawList** const cmd_lists, int 
 
     // Grow our buffer according to what we need
     size_t total_vtx_count = 0;
-    for (int n = 0; n < cmd_lists_count; n++)
+    for(int n = 0; n < cmd_lists_count; n++)
         total_vtx_count += cmd_lists[n]->vtx_buffer.size();
     glBindBuffer(GL_ARRAY_BUFFER, g_VboHandle);
     size_t needed_vtx_size = total_vtx_count * sizeof(ImDrawVert);
-    if (g_VboSize < needed_vtx_size)
+    if(g_VboSize < needed_vtx_size)
     {
-        g_VboSize = needed_vtx_size + 5000 * sizeof(ImDrawVert);  // Grow buffer
+        g_VboSize = needed_vtx_size + 5000 * sizeof(ImDrawVert); // Grow buffer
         glBufferData(GL_ARRAY_BUFFER, g_VboSize, NULL, GL_STREAM_DRAW);
     }
 
     // Copy and convert all vertices into a single contiguous buffer
-    unsigned char* buffer_data = (unsigned char*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
-    if (!buffer_data)
+    unsigned char *buffer_data = (unsigned char *)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+    if(!buffer_data)
         return;
-    for (int n = 0; n < cmd_lists_count; n++)
+    for(int n = 0; n < cmd_lists_count; n++)
     {
-        const ImDrawList* cmd_list = cmd_lists[n];
+        const ImDrawList *cmd_list = cmd_lists[n];
         memcpy(buffer_data, &cmd_list->vtx_buffer[0], cmd_list->vtx_buffer.size() * sizeof(ImDrawVert));
         buffer_data += cmd_list->vtx_buffer.size() * sizeof(ImDrawVert);
     }
@@ -90,14 +86,14 @@ static void ImGui_ImplGlfwGL3_RenderDrawLists(ImDrawList** const cmd_lists, int 
     glBindVertexArray(g_VaoHandle);
 
     int cmd_offset = 0;
-    for (int n = 0; n < cmd_lists_count; n++)
+    for(int n = 0; n < cmd_lists_count; n++)
     {
-        const ImDrawList* cmd_list = cmd_lists[n];
+        const ImDrawList *cmd_list = cmd_lists[n];
         int vtx_offset = cmd_offset;
-        const ImDrawCmd* pcmd_end = cmd_list->commands.end();
-        for (const ImDrawCmd* pcmd = cmd_list->commands.begin(); pcmd != pcmd_end; pcmd++)
+        const ImDrawCmd *pcmd_end = cmd_list->commands.end();
+        for(const ImDrawCmd *pcmd = cmd_list->commands.begin(); pcmd != pcmd_end; pcmd++)
         {
-            if (pcmd->user_callback)
+            if(pcmd->user_callback)
             {
                 pcmd->user_callback(cmd_list, pcmd);
             }
@@ -119,33 +115,25 @@ static void ImGui_ImplGlfwGL3_RenderDrawLists(ImDrawList** const cmd_lists, int 
     glBindTexture(GL_TEXTURE_2D, last_texture);
 }
 
-static const char* ImGui_ImplGlfwGL3_GetClipboardText()
+static const char *ImGui_ImplGlfwGL3_GetClipboardText() { return glfwGetClipboardString(g_Window); }
+static void ImGui_ImplGlfwGL3_SetClipboardText(const char *text) { glfwSetClipboardString(g_Window, text); }
+void ImGui_ImplGlfwGL3_MouseButtonCallback(GLFWwindow *, int button, int action, int /*mods*/)
 {
-    return glfwGetClipboardString(g_Window);
-}
-
-static void ImGui_ImplGlfwGL3_SetClipboardText(const char* text)
-{
-    glfwSetClipboardString(g_Window, text);
-}
-
-void ImGui_ImplGlfwGL3_MouseButtonCallback(GLFWwindow*, int button, int action, int /*mods*/)
-{
-    if (action == GLFW_PRESS && button >= 0 && button < 3)
+    if(action == GLFW_PRESS && button >= 0 && button < 3)
         g_MousePressed[button] = true;
 }
 
-void ImGui_ImplGlfwGL3_ScrollCallback(GLFWwindow*, double /*xoffset*/, double yoffset)
+void ImGui_ImplGlfwGL3_ScrollCallback(GLFWwindow *, double /*xoffset*/, double yoffset)
 {
     g_MouseWheel += (float)yoffset; // Use fractional mouse wheel, 1.0 unit 5 lines.
 }
 
-void ImGui_ImplGlfwGL3_KeyCallback(GLFWwindow*, int key, int, int action, int mods)
+void ImGui_ImplGlfwGL3_KeyCallback(GLFWwindow *, int key, int, int action, int mods)
 {
-    ImGuiIO& io = ImGui::GetIO();
-    if (action == GLFW_PRESS)
+    ImGuiIO &io = ImGui::GetIO();
+    if(action == GLFW_PRESS)
         io.KeysDown[key] = true;
-    if (action == GLFW_RELEASE)
+    if(action == GLFW_RELEASE)
         io.KeysDown[key] = false;
 
     (void)mods; // Modifiers are not reliable across systems
@@ -154,20 +142,20 @@ void ImGui_ImplGlfwGL3_KeyCallback(GLFWwindow*, int key, int, int action, int mo
     io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
 }
 
-void ImGui_ImplGlfwGL3_CharCallback(GLFWwindow*, unsigned int c)
+void ImGui_ImplGlfwGL3_CharCallback(GLFWwindow *, unsigned int c)
 {
-    ImGuiIO& io = ImGui::GetIO();
-    if (c > 0 && c < 0x10000)
+    ImGuiIO &io = ImGui::GetIO();
+    if(c > 0 && c < 0x10000)
         io.AddInputCharacter((unsigned short)c);
 }
 
 void ImGui_ImplGlfwGL3_CreateFontsTexture()
 {
-    ImGuiIO& io = ImGui::GetIO();
+    ImGuiIO &io = ImGui::GetIO();
 
-    unsigned char* pixels;
+    unsigned char *pixels;
     int width, height;
-    io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height);   // Load as RGBA 32-bits for OpenGL3 demo because it is more likely to be compatible with user's existing shader.
+    io.Fonts->GetTexDataAsRGBA32(&pixels, &width, &height); // Load as RGBA 32-bits for OpenGL3 demo because it is more likely to be compatible with user's existing shader.
 
     glGenTextures(1, &g_FontTexture);
     glBindTexture(GL_TEXTURE_2D, g_FontTexture);
@@ -185,31 +173,31 @@ void ImGui_ImplGlfwGL3_CreateFontsTexture()
 
 bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
 {
-    const GLchar *vertex_shader =
-        "#version 330\n"
-        "uniform mat4 ProjMtx;\n"
-        "in vec2 Position;\n"
-        "in vec2 UV;\n"
-        "in vec4 Color;\n"
-        "out vec2 Frag_UV;\n"
-        "out vec4 Frag_Color;\n"
-        "void main()\n"
-        "{\n"
-        "	Frag_UV = UV;\n"
-        "	Frag_Color = Color;\n"
-        "	gl_Position = ProjMtx * vec4(Position.xy,0,1);\n"
-        "}\n";
+    const GLchar *vertex_shader = "#version 300 es\n"
+                                  "precision mediump float;\n"
+                                  "uniform mat4 ProjMtx;\n"
+                                  "in vec2 Position;\n"
+                                  "in vec2 UV;\n"
+                                  "in vec4 Color;\n"
+                                  "out vec2 Frag_UV;\n"
+                                  "out vec4 Frag_Color;\n"
+                                  "void main()\n"
+                                  "{\n"
+                                  "	Frag_UV = UV;\n"
+                                  "	Frag_Color = Color;\n"
+                                  "	gl_Position = ProjMtx * vec4(Position.xy,0,1);\n"
+                                  "}\n";
 
-    const GLchar* fragment_shader =
-        "#version 330\n"
-        "uniform sampler2D Texture;\n"
-        "in vec2 Frag_UV;\n"
-        "in vec4 Frag_Color;\n"
-        "out vec4 Out_Color;\n"
-        "void main()\n"
-        "{\n"
-        "	Out_Color = Frag_Color * texture( Texture, Frag_UV.st);\n"
-        "}\n";
+    const GLchar *fragment_shader = "#version 300 es\n"
+                                    "precision mediump float;\n"
+                                    "uniform sampler2D Texture;\n"
+                                    "in vec2 Frag_UV;\n"
+                                    "in vec4 Frag_Color;\n"
+                                    "out vec4 Out_Color;\n"
+                                    "void main()\n"
+                                    "{\n"
+                                    "	Out_Color = Frag_Color * texture( Texture, Frag_UV.st);\n"
+                                    "}\n";
 
     g_ShaderHandle = glCreateProgram();
     g_VertHandle = glCreateShader(GL_VERTEX_SHADER);
@@ -237,10 +225,10 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
     glEnableVertexAttribArray(g_AttribLocationUV);
     glEnableVertexAttribArray(g_AttribLocationColor);
 
-#define OFFSETOF(TYPE, ELEMENT) ((size_t)&(((TYPE *)0)->ELEMENT))
-    glVertexAttribPointer(g_AttribLocationPosition, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, pos));
-    glVertexAttribPointer(g_AttribLocationUV, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, uv));
-    glVertexAttribPointer(g_AttribLocationColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(ImDrawVert), (GLvoid*)OFFSETOF(ImDrawVert, col));
+#define OFFSETOF(TYPE, ELEMENT) ((size_t) & (((TYPE *)0)->ELEMENT))
+    glVertexAttribPointer(g_AttribLocationPosition, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid *)OFFSETOF(ImDrawVert, pos));
+    glVertexAttribPointer(g_AttribLocationUV, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid *)OFFSETOF(ImDrawVert, uv));
+    glVertexAttribPointer(g_AttribLocationColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(ImDrawVert), (GLvoid *)OFFSETOF(ImDrawVert, col));
 #undef OFFSETOF
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -250,12 +238,12 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
     return true;
 }
 
-bool    ImGui_ImplGlfwGL3_Init(GLFWwindow* window, bool install_callbacks)
+bool ImGui_ImplGlfwGL3_Init(GLFWwindow *window, bool install_callbacks)
 {
     g_Window = window;
 
-    ImGuiIO& io = ImGui::GetIO();
-    io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;                 // Keyboard mapping. ImGui will use those indices to peek into the io.KeyDown[] array.
+    ImGuiIO &io = ImGui::GetIO();
+    io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB; // Keyboard mapping. ImGui will use those indices to peek into the io.KeyDown[] array.
     io.KeyMap[ImGuiKey_LeftArrow] = GLFW_KEY_LEFT;
     io.KeyMap[ImGuiKey_RightArrow] = GLFW_KEY_RIGHT;
     io.KeyMap[ImGuiKey_UpArrow] = GLFW_KEY_UP;
@@ -280,7 +268,7 @@ bool    ImGui_ImplGlfwGL3_Init(GLFWwindow* window, bool install_callbacks)
     io.ImeWindowHandle = glfwGetWin32Window(g_Window);
 #endif
 
-    if (install_callbacks)
+    if(install_callbacks)
     {
         glfwSetMouseButtonCallback(window, ImGui_ImplGlfwGL3_MouseButtonCallback);
         glfwSetScrollCallback(window, ImGui_ImplGlfwGL3_ScrollCallback);
@@ -295,8 +283,10 @@ bool    ImGui_ImplGlfwGL3_Init(GLFWwindow* window, bool install_callbacks)
 
 void ImGui_ImplGlfwGL3_Shutdown()
 {
-    if (g_VaoHandle) glDeleteVertexArrays(1, &g_VaoHandle);
-    if (g_VboHandle) glDeleteBuffers(1, &g_VboHandle);
+    if(g_VaoHandle)
+        glDeleteVertexArrays(1, &g_VaoHandle);
+    if(g_VboHandle)
+        glDeleteBuffers(1, &g_VboHandle);
     g_VaoHandle = 0;
     g_VboHandle = 0;
 
@@ -311,7 +301,7 @@ void ImGui_ImplGlfwGL3_Shutdown()
     glDeleteProgram(g_ShaderHandle);
     g_ShaderHandle = 0;
 
-    if (g_FontTexture)
+    if(g_FontTexture)
     {
         glDeleteTextures(1, &g_FontTexture);
         ImGui::GetIO().Fonts->TexID = 0;
@@ -322,10 +312,10 @@ void ImGui_ImplGlfwGL3_Shutdown()
 
 void ImGui_ImplGlfwGL3_NewFrame()
 {
-    if (!g_FontTexture)
+    if(!g_FontTexture)
         ImGui_ImplGlfwGL3_CreateDeviceObjects();
 
-    ImGuiIO& io = ImGui::GetIO();
+    ImGuiIO &io = ImGui::GetIO();
 
     // Setup display size (every frame to accommodate for window resizing)
     int w, h;
@@ -335,28 +325,30 @@ void ImGui_ImplGlfwGL3_NewFrame()
     io.DisplaySize = ImVec2((float)display_w, (float)display_h);
 
     // Setup time step
-    double current_time =  glfwGetTime();
-    io.DeltaTime = g_Time > 0.0 ? (float)(current_time - g_Time) : (float)(1.0f/60.0f);
+    double current_time = glfwGetTime();
+    io.DeltaTime = g_Time > 0.0 ? (float)(current_time - g_Time) : (float)(1.0f / 60.0f);
     g_Time = current_time;
 
     // Setup inputs
     // (we already got mouse wheel, keyboard keys & characters from glfw callbacks polled in glfwPollEvents())
-    if (glfwGetWindowAttrib(g_Window, GLFW_FOCUSED))
+    if(glfwGetWindowAttrib(g_Window, GLFW_FOCUSED))
     {
-    	double mouse_x, mouse_y;
-    	glfwGetCursorPos(g_Window, &mouse_x, &mouse_y);
-    	mouse_x *= (float)display_w / w;                        // Convert mouse coordinates to pixels
-    	mouse_y *= (float)display_h / h;
-    	io.MousePos = ImVec2((float)mouse_x, (float)mouse_y);   // Mouse position, in pixels (set to -1,-1 if no mouse / on another screen, etc.)
+        double mouse_x, mouse_y;
+        glfwGetCursorPos(g_Window, &mouse_x, &mouse_y);
+        mouse_x *= (float)display_w / w; // Convert mouse coordinates to pixels
+        mouse_y *= (float)display_h / h;
+        io.MousePos = ImVec2((float)mouse_x, (float)mouse_y); // Mouse position, in pixels (set to -1,-1 if no mouse / on another screen, etc.)
     }
     else
     {
-    	io.MousePos = ImVec2(-1,-1);
+        io.MousePos = ImVec2(-1, -1);
     }
 
-    for (int i = 0; i < 3; i++)
+    for(int i = 0; i < 3; i++)
     {
-        io.MouseDown[i] = g_MousePressed[i] || glfwGetMouseButton(g_Window, i) != 0;    // If a mouse press event came, always pass it as "mouse held this frame", so we don't miss click-release events that are shorter than 1 frame.
+        io.MouseDown[i] =
+            g_MousePressed[i] ||
+            glfwGetMouseButton(g_Window, i) != 0; // If a mouse press event came, always pass it as "mouse held this frame", so we don't miss click-release events that are shorter than 1 frame.
         g_MousePressed[i] = false;
     }
 

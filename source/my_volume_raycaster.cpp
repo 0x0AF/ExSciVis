@@ -68,9 +68,6 @@
 const std::string g_file_vertex_shader("../../../source/shader/volume.vert");
 const std::string g_file_fragment_shader("../../../source/shader/volume.frag");
 
-const std::string g_GUI_file_vertex_shader("../../../source/shader/pass_through_GUI.vert");
-const std::string g_GUI_file_fragment_shader("../../../source/shader/pass_through_GUI.frag");
-
 GLuint loadShaders(std::string const& vs, std::string const& fs)
 {
     std::string v = readFile(vs);
@@ -126,8 +123,8 @@ std::string g_file_string = "../../../data/head_w256_h256_d225_c1_b8.raw";
 
 // set the sampling distance for the ray traversal
 float       g_sampling_distance = 0.001f;
-float       g_sampling_distance_fact = 0.5f;
-float       g_sampling_distance_fact_move = 2.0f;
+float       g_sampling_distance_fact = 8.0f;
+float       g_sampling_distance_fact_move = 10.0f;
 float       g_sampling_distance_fact_ref = 1.0f;
 
 float       g_iso_value = 0.2f;
@@ -141,8 +138,8 @@ glm::vec3   g_specula_light_color = glm::vec3(0.2f, 0.2f, 0.2f);
 float       g_ref_coef = 12.0;
 
 // set backgorund color here
-//glm::vec3   g_background_color = glm::vec3(1.0f, 1.0f, 1.0f); //white
-glm::vec3   g_background_color = glm::vec3(0.08f, 0.08f, 0.08f);   //grey
+glm::vec3   g_background_color = glm::vec3(0.5f, 0.3f, 0.3f); //debug
+//glm::vec3   g_background_color = glm::vec3(0.08f, 0.08f, 0.08f);   //grey
 
 glm::ivec2  g_window_res = glm::ivec2(1600, 800);
 Window g_win(g_window_res);
@@ -764,6 +761,20 @@ int main(int argc, char* argv[])
     //g_win = Window(g_window_res);
     //InitImGui();
     ImGui_ImplGlfwGL3_Init(g_win.getGLFWwindow(), true);
+
+    const GLubyte *renderer = glGetString(GL_RENDERER);
+    const GLubyte *vendor = glGetString(GL_VENDOR);
+    const GLubyte *version = glGetString(GL_VERSION);
+    const GLubyte *glslVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
+
+    std::stringstream ss;
+    ss << "\n-------------------------------------------------------------\n";
+    ss << "GL Vendor    : " << vendor;
+    ss << "\nGL GLRenderer : " << renderer;
+    ss << "\nGL Version   : " << version;
+    ss << "\nGLSL Version : " << glslVersion;
+    ss << "\n-------------------------------------------------------------\n";
+    printf("%s", ss.str().c_str());
 
     // initialize the transfer function
 
